@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  --bg-grad: linear-gradient(45deg, #d8c8fe, #acc6f1) !important;
+  --text-grad: linear-gradient(90deg, #8b5cf6, #3b82f6);
+  --normal-text: linear-gradient(90deg, #01115b, #0800a7);
+}
+
+.dark {
+  --bg-grad: linear-gradient(135deg, #030669, #000000) !important;
+  --text-grad: linear-gradient(90deg, #8b5cf6, #3b82f6);
+  --normal-text: linear-gradient(90deg, #b3c1ff, #f2f2f2);
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+  .bg-gradient {
+    background-image: var(--bg-grad);
+  }
+  
+
+  header{
+    box-shadow:2px 1px 1px black;
+  }
+
+  .button{
+    @apply text-sm font-medium px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-xl shadow transition transform hover:scale-105 hover:shadow-lg hover:brightness-110;
+  }
+
+  .text-gradient {
+    background-image: var(--text-grad);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .normal-text{
+    background-image: var(--normal-text);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .slide-in {
+    transform: translateX(0);
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .slide-out {
+    transform: translateX(1rem);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+}
