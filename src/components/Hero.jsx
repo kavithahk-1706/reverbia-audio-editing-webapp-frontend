@@ -38,7 +38,7 @@ export default function Hero() {
           Every preset is a portal — and with Reverbia? <br />
           You're not just tweaking audios — you're shaping your own spaces.
         </p>
-        <Link to="/register" className="button mt-6">
+        <Link to="/register" className="button mt-2">
           Get Started
         </Link>
       </div>
