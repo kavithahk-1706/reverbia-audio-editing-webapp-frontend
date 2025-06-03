@@ -1,19 +1,36 @@
-import { Volume2, VolumeX } from "lucide-react"; 
+import { Volume2, VolumeX } from "lucide-react";
 import useTheme from "../hooks/useTheme";
+import * as Tone from "tone";
 
-
-export default function MuteToggle({playerRef, muted, setMuted }) {
+export default function MuteToggle({ playerRef, muted, setMuted }) {
     const { theme } = useTheme();
     const isLight = theme === "light";
-    
-    function toggleMute() {
-        const player = playerRef.current;
-        if (player) {
-            player.mute = !muted;
+
+    async function toggleMute() {
+        if (!playerRef.current) {
+            const reverbiaTheme = (await import("../assets/reverbia_theme.mp3")).default;
+            await Tone.start();
+
+            const player = new Tone.Player(reverbiaTheme).toDestination();
+            const analyser = new Tone.Analyser("waveform", 1024);
+            player.connect(analyser);
+
+            // attach custom fields so HeroVisualizer can pick it up
+            player._analyser = analyser;
+            player._enabled = true;
+
+            player.loop = true;
+            player.autostart = true;
+            player.mute = false;
+
+            playerRef.current = player;
+            setMuted(false);
+        } else {
+            playerRef.current.mute = !muted;
             setMuted(!muted);
         }
     }
-    
+
     return (
         <button
             onClick={toggleMute}

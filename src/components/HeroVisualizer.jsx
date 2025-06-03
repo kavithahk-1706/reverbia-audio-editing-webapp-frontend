@@ -1,80 +1,58 @@
-import { useEffect, useRef, useState } from "react";
-import reverbiaTheme from "../assets/reverbia_theme.mp3";
-import * as Tone from "tone";
+import {useEffect, useRef} from 'react';
 
+export default function HeroVisualizer({playerRef}){
+    const canvasRef=useRef(null);
 
-export default function HeroVisualizer({playerRef,muted}) {
-    const canvasRef = useRef(null);
-    const [started, setStarted] = useState(false);
+    useEffect(()=>{
+        const canvas=canvasRef.current;
+        const ctx=canvas.getContext("2d");
 
-    const analyserRef = useRef(null);
+        let animationId;
 
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext("2d");
+        function draw(){
+            if(!playerRef.current||!playerRef.current._enabled) return;
+            const analyser=playerRef.current._analyser;
+            if(!analyser) return;
 
-        let analyser;
-        let bufferLength;
+            const values=analyser.getValue();
+            ctx.clearRect(0,0,canvas.width, canvas.height);
 
-        function draw() {
-            requestAnimationFrame(draw);
-            const values = analyser.getValue();
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-            gradient.addColorStop(0, "#8b5cf6");
-            gradient.addColorStop(1, "#3b82f6");
-            ctx.strokeStyle = gradient;
-            ctx.shadowColor = "#8b5cf6";
-            ctx.shadowBlur = 20;
-            ctx.lineWidth = 4;
+            const gradient=ctx.createLinearGradient(0,0,canvas.width,0);
+            gradient.addColorStop(0,'#8b5cf6');
+            gradient.addColorStop(1, '#3b82f6');
+            ctx.strokeStyle=gradient;
+            ctx.shadowColor='#8b5cf6';
+            ctx.shadowBlur=20;
+            ctx.lineWidth=3;
             ctx.beginPath();
-            const sliceWidth = canvas.width / bufferLength;
-            let x = 0;
-            for (let i = 0; i < bufferLength; i++) {
-                const v = (values[i] + 1) / 2;
-                const y = v * canvas.height;
-                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-                x += sliceWidth;
+            
+            const sliceWidth=canvas.width/analyser.size;
+            let x=0;
+            for(let i=0;i<analyser.size;i++){
+                const v=(values[i]+1)/2;
+                const y=v*canvas.height;
+                (i===0)?ctx.moveTo(x,y):ctx.lineTo(x,y);
+                x+=sliceWidth;
             }
-            ctx.lineTo(canvas.width, canvas.height / 2);
+            ctx.lineTo(canvas.width,canvas.height/2);
             ctx.stroke();
+            animationId=requestAnimationFrame(draw);
         }
 
-        const handleUserGesture = async () => {
-            await Tone.start();
-
-            const player = new Tone.Player(reverbiaTheme).toDestination();
-            playerRef.current = player;
-            player.mute = muted;
-            player.loop = true;
-            player.autostart = true;
-
-            analyser = new Tone.Analyser("waveform", 1024);
-            player.connect(analyser);
-            bufferLength = analyser.size;
-
+        if(playerRef.current && playerRef.current._analyser){
             draw();
+        }
 
-            setStarted(true);
-            window.removeEventListener("mousemove", handleUserGesture);
-        };
+        return()=>cancelAnimationFrame(animationId);
+    }, [playerRef.current]);
 
-        window.addEventListener("mousemove", handleUserGesture);
-
-        return () => window.removeEventListener("mousemove", handleUserGesture);
-    }, []);
-
-
-    
-    
-
-    return (
-        <div> 
+    return(
+        <div>
             <canvas
-                ref={canvasRef}
-                width={window.innerWidth}
-                height={200}
-                className="absolute top-0 left-0 cursor-pointer z-10"
+            ref={canvasRef}
+            width={window.innerWidth}
+            height={200}
+            className='absolute top-0 left-0 cursor-pointer z-10'
             />
         </div>
     );

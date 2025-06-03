@@ -29,12 +29,12 @@ export default function Header(){
     </nav>
 
     <div className="flex items-center gap-4">
-        <Link to="/login" className="button">
+        <Link to="/login" className="button px-4 py-2 text-sm">
             Sign in
         </Link>
         <Link
             to="/register"
-            className="button"
+            className="button px-4 py-2 text-sm"
         >
             Sign up
         </Link>
