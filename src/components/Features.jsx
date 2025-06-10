@@ -46,7 +46,7 @@ export default function Features(){
     
         <div className="bg-gradient flex min-h-[450px] flex-col gap-3 items-center mt-[-7rem] top-0 shadow-lg justify-center w-full relative">
             <h1 className="text-4xl text-gradient text-center font-semibold">Your Sound, Your Realm</h1>
-            <h4 className='text-2xl normal-text pb-5'>Step into your own sound space – where every track is yours to mold.</h4>
+            <h4 className='text-2xl normal-text pb-5'>Your personal soundscape, fully customizable.</h4>
             <Swiper 
             spaceBetween={10}
             modules={[Autoplay]}
