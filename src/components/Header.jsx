@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function Header(){
   return (
-    <header className="flex items-center justify-between px-6 py-4 bg-transparent backdrop-blur-md fixed top-0 left-0 w-full z-50 shadow-xlg border-blue-500">
+    <header className="flex items-center justify-between px-6 py-4 bg-transparent backdrop-blur-2xl sticky top-0 left-0 w-full z-30 shadow-xlg border-blue-500">
       
       
       <div className="flex items-center gap-3"> 

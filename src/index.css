@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --bg-grad: linear-gradient(45deg, #d8c8fe, #acc6f1) !important;
+  --bg-grad: linear-gradient(90deg, #c2abf8, #aac1e5) !important;
   --text-grad: linear-gradient(90deg, #8b5cf6, #3b82f6);
   --normal-text: linear-gradient(90deg, #01115b, #0800a7);
 }
 
 .dark {
-  --bg-grad: linear-gradient(135deg, #030669, #000000) !important;
-  --text-grad: linear-gradient(90deg, #8b5cf6, #3b82f6);
+  --bg-grad: linear-gradient(90deg, #030669, #000000) !important;
+  --text-grad: linear-gradient(90deg, #3b82f6, #8b5cf6);
   --normal-text: linear-gradient(90deg, #b3c1ff, #f2f2f2);
 }
 
@@ -19,6 +19,7 @@
 
 
 @layer utilities {
+
   .bg-gradient {
     background-image: var(--bg-grad);
   }
@@ -29,7 +30,19 @@
   }
 
   .button{
-    @apply font-medium inline-block bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-xl shadow transition transform hover:scale-105 hover:shadow-lg hover:brightness-110;
+    @apply font-medium inline-block text-white transition-all duration-300 ease-in-out cursor-pointer rounded-xl bg-gradient-to-r from-[#8b5cf6] to-[#3b82f6] shadow-md transform hover:scale-105 hover:shadow-lg hover:brightness-110;
+  }
+
+  .card{
+    @apply min-h-[250px] flex flex-col items-center justify-center bg-gradient-to-r from-[#c2abf8] to-[#aac1e5] text-center rounded-lg shadow-md p-6 transition-transform duration-300 ease-in-out cursor-pointer;
+  }
+
+  .dark .card{
+    @apply bg-gradient-to-r from-[#030669] to-[#000000];
+  }
+
+  .dark .button{
+    @apply bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6];
   }
 
   .text-gradient {
@@ -46,16 +59,6 @@
     -webkit-text-fill-color: transparent;
   }
 
-  .slide-in {
-    transform: translateX(0);
-    opacity: 1;
-    transition: all 0.3s ease-in-out;
-  }
 
-  .slide-out {
-    transform: translateX(1rem);
-    opacity: 0;
-    transition: all 0.3s ease-in-out;
-  }
 
 }

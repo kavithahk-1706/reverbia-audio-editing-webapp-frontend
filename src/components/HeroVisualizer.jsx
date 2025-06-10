@@ -1,7 +1,9 @@
 import {useEffect, useRef} from 'react';
 
+
 export default function HeroVisualizer({playerRef}){
     const canvasRef=useRef(null);
+
 
     useEffect(()=>{
         const canvas=canvasRef.current;
@@ -18,12 +20,17 @@ export default function HeroVisualizer({playerRef}){
             ctx.clearRect(0,0,canvas.width, canvas.height);
 
             const gradient=ctx.createLinearGradient(0,0,canvas.width,0);
-            gradient.addColorStop(0,'#8b5cf6');
+    
+            gradient.addColorStop(0, '#3b82f6');
+            gradient.addColorStop(0.5,'#8b5cf6');
             gradient.addColorStop(1, '#3b82f6');
+
             ctx.strokeStyle=gradient;
             ctx.shadowColor='#8b5cf6';
             ctx.shadowBlur=20;
-            ctx.lineWidth=3;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            ctx.lineWidth=2.5;
             ctx.beginPath();
             
             const sliceWidth=canvas.width/analyser.size;
@@ -51,8 +58,9 @@ export default function HeroVisualizer({playerRef}){
             <canvas
             ref={canvasRef}
             width={window.innerWidth}
-            height={200}
-            className='absolute top-0 left-0 cursor-pointer z-10'
+            
+            height={275}
+            className='absolute bottom-0 left-0 z-6 text-center'
             />
         </div>
     );

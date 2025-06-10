@@ -12,12 +12,12 @@ export default function ThemeToggle() {
         ${isLight ? "bg-[#030312]" : "bg-[#ebeffe]"}
         hover:scale-105 hover:shadow-lg
       `}
-      aria-label="Toggle theme"
+      aria-label="Toggle Theme"
     >
       {isLight ? (
-        <Moon className="w-6 h-6 text-blue-500" />
+        <Moon className="w-6 h-6 text-[#3b82f6]" />
       ) : (
-        <Sun className="w-6 h-6 text-purple-500" />
+        <Sun className="w-6 h-6 text-[#8b5cf6]" />
       )}
     </button>
   );
