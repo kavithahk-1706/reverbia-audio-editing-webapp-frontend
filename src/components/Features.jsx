@@ -13,7 +13,7 @@ export default function Features(){
         {
             icon: <Upload size={50}/>,
             title: 'Track Upload & Playback',
-            desc: 'Upload your own audio and play it back seamlessly — with smooth controls ensuring a seamless experience.',
+            desc: 'Upload your own audio tracks and play them back seamlessly.',
         },
         {
             icon: <ListMusic size={50} />,
@@ -45,10 +45,10 @@ export default function Features(){
     return(
     
         <div className="bg-gradient flex min-h-[450px] flex-col gap-3 items-center mt-[-7rem] top-0 shadow-lg justify-center w-full relative">
-            <h1 className="text-4xl text-gradient text-center font-semibold">Your Sound, Your Realm</h1>
-            <h4 className='text-2xl normal-text pb-5'>Your personal soundscape, fully customizable.</h4>
+            <h1 className="text-2xl md:text-4xl text-gradient text-center font-semibold">Your Sound, Your Realm</h1>
+            <h4 className='text-xl md:text-2xl normal-text pb-5'>Your personal soundscape, fully customizable.</h4>
             <Swiper 
-            spaceBetween={10}
+            spaceBetween={6}
             modules={[Autoplay]}
             loop={true}
             speed={2000}
@@ -58,13 +58,16 @@ export default function Features(){
             }}
             allowTouchMove={false}
             breakpoints={{
-                320: {slidesPerView:1},
+                0: {slidesPerView:1},
                 640: {slidesPerView:3},
+                768: {slidesPerView:3},
+               
+
              
             }}
 
             className='w-full px-4 sm:px-10 py-10'
-            centeredSlides={true}>
+            >
                 {features.map(({icon, title, desc}, index)=>(
                     <SwiperSlide key={index} className="hover:scale-105">
                         <div className="card">
