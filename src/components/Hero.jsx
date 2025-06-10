@@ -21,7 +21,7 @@ export default function Hero() {
       <div className="relative z-10 bottom-15 items-center flex gap-10 flex-col justify-center h-full text-center px-4">
         
         <h1 className="text-4xl sm:text-5xl top-0 font-bold text-gradient">
-          Reverbia – Where Sound Echoes Across Dimensions
+          Reverbia – Where Music Echoes Across Dimensions
         </h1>
         <p className="top-3 not-only-of-type:text-lg font-medium normal-text">
           Step into the reverb of a concert hall. <br />

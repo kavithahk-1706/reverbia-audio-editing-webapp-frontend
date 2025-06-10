@@ -44,8 +44,9 @@ export default function Features(){
     ]
     return(
     
-        <div className="bg-gradient flex min-h-[450px] flex-col gap-3 items-center mt-[-10rem] top-0 shadow-lg justify-center w-full relative">
-            <h1 className="text-4xl text-gradient text-center font-semibold p-5">Why Reverbia</h1>
+        <div className="bg-gradient flex min-h-[450px] flex-col gap-3 items-center mt-[-7rem] top-0 shadow-lg justify-center w-full relative">
+            <h1 className="text-4xl text-gradient text-center font-semibold">Your Sound, Your Realm</h1>
+            <h4 className='text-2xl normal-text pb-5'>Step into your own sound space – where every track is yours to mold.</h4>
             <Swiper 
             spaceBetween={10}
             modules={[Autoplay]}
@@ -68,7 +69,7 @@ export default function Features(){
                     <SwiperSlide key={index} className="hover:scale-105">
                         <div className="card">
                             <div className={`w-6 h-6 text-4xl sm:w-8 sm:h-8 md:w-10 md:h-10 m-4 font-medium flex justify-center ${isLight ? "text-[#8b5cf6]" : "text-[#3b82f6]"}`}>{icon}</div>
-                            <h3 className='text-xl font-semibold text-gradient mb-2'>{title}</h3>
+                            <h2 className='text-xl font-semibold text-gradient mb-2'>{title}</h2>
                             <p className='normal-text'>{desc}</p>
                         </div>
                         
